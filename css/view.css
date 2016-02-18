@@ -1,0 +1,229 @@
+body
+{
+/*    background: #fbf9ff;*/
+    font-family: 'Lato', sans-serif;
+    font-size: small;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #000000;
+}
+
+
+.content
+{
+    background: #e7e7e7;
+    margin:0 auto;
+    text-align:left;
+    width:640px;
+    padding: 12px;
+}
+
+
+#top
+{
+    display:block;
+    height:10px;
+    margin:10px auto 0;
+    width:650px;
+}
+
+
+#bottom
+{
+    display:block;
+    height:10px;
+    margin:0 auto;
+    width:650px;
+}
+
+
+form.formClass
+{
+    margin:20px 20px 0;
+    padding:0 0 20px;
+}
+
+
+.formClass
+{
+    font-family:Lucida Grande, Tahoma, Arial, Verdana, sans-serif;
+    font-size:small;
+}
+
+.formClass li
+{
+    width:61%;
+}
+
+
+form ul
+{
+    font-size:100%;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    width:100%;
+}
+
+form li
+{
+    display:block;
+    margin:0;
+    padding:4px 5px 2px 9px;
+    position:relative;
+}
+
+form li:after
+{
+    clear:both;
+    content:".";
+    display:block;
+    height:0;
+    visibility:hidden;
+}
+
+
+
+.radio-choice * {
+    #vertical-align: middle;
+    overflow:hidden;
+}
+
+
+
+.buttons:after
+{
+    clear:both;
+    content:".";
+    display:block;
+    height:0;
+    visibility:hidden;
+}
+
+.buttons
+{
+    clear:both;
+    display:block;
+    margin-top:10px;
+}
+
+* html form li
+{
+    height:1%;
+}
+
+* html .buttons
+{
+    height:1%;
+}
+
+form li.highlighted
+{
+    background-color:#fff7c0;
+}
+
+form .guidelines
+{
+    background:#f5f5f5;
+    border:1px solid #e6e6e6;
+    color:#444;
+    font-size:80%;
+    left:100%;
+    line-height:130%;
+    margin:0 0 0 8px;
+    padding:8px 10px 9px;
+    position:absolute;
+    top:0;
+    visibility:hidden;
+    width:42%;
+    z-index:1000;
+}
+
+form .guidelines small
+{
+    font-size:105%;
+}
+
+form li.highlighted .guidelines
+{
+    visibility:visible;
+}
+
+form li:hover .guidelines
+{
+    visibility:visible;
+}
+
+.no_guidelines .guidelines
+{
+    display:none !important;
+}
+
+.no_guidelines form li
+{
+    width:97%;
+}
+
+.no_guidelines li.section
+{
+    padding-left:9px;
+}
+
+.hidden_date {
+    display: none;
+}
+
+.hidden_time {
+    display: none;
+}
+
+h1 {
+    padding-top: 40px
+}
+
+#sanity_results, #modules_results{
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+
+#sanity_loader, #modules_loader{
+    width: 200px;
+}
+
+.hide {
+    position: absolute;
+    top:-1px;
+    left:-1px;
+    width:1px;
+    height:1px;
+}
+
+h1 sup {
+    color: #999;
+    font-size: 8px;
+}
+
+h4 sup {
+    color: #999;
+    font-size: 63%;
+    font-style: italic;
+}
+
+.pill-menu {
+  margin: 0 auto;
+  width: 450px;
+}
+
+label {
+  font-weight: normal;
+}
+
+#sql {
+  margin-top: 5px;
+}
+
+#query-options{
+  padding-bottom: 20px;
+}

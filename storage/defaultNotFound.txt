@@ -1,0 +1,4 @@
+Sorry the log you requested was not found.
+
+1: the Log file doesn't exist
+2: Something went very wrong -- email shanmcgo@ie.ibm.com for more information.
