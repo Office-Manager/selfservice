@@ -34,7 +34,8 @@ password_triggers_configs = ["\'password\'", "\'db_password\'", "site_url",
                              "dojoHost", "directHost", "proxiedHost",
                              "proxiedHost", "\'list\'", "ispClientHostURL",
                              "10005", "\'Elastic\'][\'host\'", "publishUser",
-                             "soapURL", "httpKey", "SAML_Issuer", ]
+                             "soapURL", "httpKey", "SAML_Issuer",
+                             "encrypt_key"]
 password_triggers_sfa = ["password", "Passwd", " username", "db2url",
                          "IST_SERVER"]
 
