@@ -1,9 +1,9 @@
 <?php
-if(!defined('sugarEntry'))define('sugarEntry', true);
-require_once('calendar/classes/tc_calendar.php');
-require_once('/var/www/htdocs/sales/salesconnect/sugar_version.php');
-require_once('/var/www/htdocs/sales/salesconnect/config.php');
-require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
+// if(!defined('sugarEntry'))define('sugarEntry', true);
+// require_once('calendar/classes/tc_calendar.php');
+// require_once('/var/www/htdocs/sales/salesconnect/sugar_version.php');
+// require_once('/var/www/htdocs/sales/salesconnect/config.php');
+// require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
 
 ?>
 <html>
@@ -176,9 +176,6 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
     <li><a data-toggle="pill" href="#eschecker">
         <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
           ES Checker</a></li>
-    <li><a data-toggle="pill" href="#topSecret">
-        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
-          #topSecret</a></li>
     </ul>
   </div>
 </div>
@@ -262,37 +259,37 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
             <li>
             <div id="dateChoice" class="hidden_date" style="">
                 <?php
-                $last_sat = strtotime("last Saturday"); #epoch time
-                $dt = new DateTime("@$last_sat");
-                $start_of_logs =  $dt->format('Y-m-d');
-                $thisyear= getdate();
-                $today=strtotime("today");
-                $dt = new DateTime("@$today");
-                $today =  $dt->format('Y-m-d');
-
-                $myCalendar = new tc_calendar("start_date", true, false);
-                $myCalendar->setIcon("calendar/images/iconCalendar.gif");
-                $myCalendar->setDate(date('d', strtotime($start_of_logs))
-                    , date('m', strtotime($start_of_logs))
-                    , date('Y', strtotime($start_of_logs)));
-                $myCalendar->setPath("calendar/");
-                $myCalendar->setYearInterval(date('Y', strtotime($start_of_logs)),date('Y', strtotime($today)));
-                $myCalendar->dateAllow($start_of_logs, $today );
-                $myCalendar->setAlignment('left', 'bottom');
-                $myCalendar->setDatePair('start_date', 'end_date', $today);
-                $myCalendar->writeScript();
-
-                $myCalendar = new tc_calendar("end_date", true, false);
-                $myCalendar->setIcon("calendar/images/iconCalendar.gif");
-                $myCalendar->setDate(date('d', strtotime($today))
-                    , date('m', strtotime($today))
-                    , date('Y', strtotime($today)));
-                $myCalendar->setPath("calendar/");
-                $myCalendar->setYearInterval(date('Y', strtotime($start_of_logs)),date('Y', strtotime($today)));
-                $myCalendar->dateAllow($start_of_logs, $today );
-                $myCalendar->setAlignment('left', 'bottom');
-                $myCalendar->setDatePair('start_date', 'end_date', $start_of_logs);
-                $myCalendar->writeScript();
+                //  $last_sat = strtotime("last Saturday"); #epoch time
+                //  $dt = new DateTime("@$last_sat");
+                //  $start_of_logs =  $dt->format('Y-m-d');
+                //  $thisyear= getdate();
+                //  $today=strtotime("today");
+                //  $dt = new DateTime("@$today");
+                //  $today =  $dt->format('Y-m-d');
+                 //
+                //  $myCalendar = new tc_calendar("start_date", true, false);
+                //  $myCalendar->setIcon("calendar/images/iconCalendar.gif");
+                //  $myCalendar->setDate(date('d', strtotime($start_of_logs))
+                //      , date('m', strtotime($start_of_logs))
+                //      , date('Y', strtotime($start_of_logs)));
+                //  $myCalendar->setPath("calendar/");
+                //  $myCalendar->setYearInterval(date('Y', strtotime($start_of_logs)),date('Y', strtotime($today)));
+                //  $myCalendar->dateAllow($start_of_logs, $today );
+                //  $myCalendar->setAlignment('left', 'bottom');
+                //  $myCalendar->setDatePair('start_date', 'end_date', $today);
+                //  $myCalendar->writeScript();
+                 //
+                //  $myCalendar = new tc_calendar("end_date", true, false);
+                //  $myCalendar->setIcon("calendar/images/iconCalendar.gif");
+                //  $myCalendar->setDate(date('d', strtotime($today))
+                //      , date('m', strtotime($today))
+                //      , date('Y', strtotime($today)));
+                //  $myCalendar->setPath("calendar/");
+                //  $myCalendar->setYearInterval(date('Y', strtotime($start_of_logs)),date('Y', strtotime($today)));
+                //  $myCalendar->dateAllow($start_of_logs, $today );
+                //  $myCalendar->setAlignment('left', 'bottom');
+                //  $myCalendar->setDatePair('start_date', 'end_date', $start_of_logs);
+                //  $myCalendar->writeScript();
 
                 ?>
                 <p class="guidelines" id="guide_1">
@@ -360,9 +357,9 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
               <br>
               <p><strong> To get specific files </strong><p>
               /var/www/htdocs/sales/salesconnect/folder-name/specific_file.php   or  folder-name/specific_file.php
-              
+
               <p> multiple queries can be ran at once <p>
-              
+
           <textarea class="form-control" rows="5" name="filePaths" id="filepath"></textarea>
           <br />
           <input type="submit" class="btn btn-primary">
@@ -373,12 +370,12 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
     <div id="eschecker" class="tab-pane fade">
     <form action="eschecker.php" method="post" target="hiddenFrame" class="formClass" id="escheckerForm"/>
       <div class="content">
-        <h4>ES checker <sup>"Sheep, like all wool-bearing animals, instinctively travel north, where it's colder, and they won't be so stuffy "<sup></h4>
+        <h4>ES checker <sup style="font-size: 58%">" - Sheep, like all wool-bearing animals, instinctively travel north, where it's colder, and they won't be so stuffy "<sup></h4>
         <p>'http://&lt;ES_HOST&gt;:ES_PORT/ <strong>&lt;'url'&gt;</strong> -d <strong>&lt;'request_body'>&gt;</strong> </p>
         <p> Please enter the <strong>'url'</strong>  and the <strong>'request_body'</strong> below</p>
         <div class="form-group">
-              <p><strong>url</strong></p>     
-          <textarea class="form-control" rows="1" name="es_url" id="es_url"></textarea>      
+              <p><strong>url</strong></p>
+          <textarea class="form-control" rows="1" name="es_url" id="es_url"></textarea>
               <br>
              <p><strong>request_body</strong> (optional)</p>
           <textarea class="form-control" rows="5" name="es_body" id="es_body"></textarea>
@@ -388,36 +385,18 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
       </div>
     </form>
   </div>
-      <div id="topSecret" class="tab-pane fade">
-    <form action="index.php" method="post" target="hiddenFrame" class="formClass" id="topSecretForm"/>
-      <div class="content">
-        <h4>Top Secret <sup>" - Like a Bengali tiger just waiting... "<sup></h4>
-        <p> </p>
-        <div class="form-group">
-              <p><strong>Example usage</strong></p>
-              something <br>
-              
-              <br>
-              
-          <textarea class="form-control" rows="5" name="es_url" id="es_url"></textarea>
-          <br />
-          <input type="submit" class="btn btn-primary">
-        </div>
-      </div>
-    </form>
-  </div>
 </div>
 
-       <?php
+      <?php
 
-        $database = $sugar_config['dbconfig']['db_name'] ;
-        $user = $sugar_config['dbconfig']['db_user_name'] ;
-        $password = $sugar_config['dbconfig']['db_password'] ;
-        $conn = db2_connect($database, $user, $password);
-        $connections = $sugar_config['connections_http_base_url'];
-        $ieb_url = $sugar_config['ieb_connections_base_url'];
-		    $cluster = $sugar_config['cluster_name'];
-
+        // $database = $sugar_config['dbconfig']['db_name'] ;
+        // $user = $sugar_config['dbconfig']['db_user_name'] ;
+        // $password = $sugar_config['dbconfig']['db_password'] ;
+        // $conn = db2_connect($database, $user, $password);
+        // $connections = $sugar_config['connections_http_base_url'];
+        // $ieb_url = $sugar_config['ieb_connections_base_url'];
+		    // $cluster = $sugar_config['cluster_name'];
+        //
         // Sugar version
 
         echo "<table border=0 align=\"center\">";
@@ -430,7 +409,7 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
         echo "<tr>";
         echo "<td align=\"center\">IEB Connections Server</td> <td><b><span id=\"ieb_url\">$ieb_url</span></b></td>";
         echo "</table>";
-
+        //
         // Sanity Tests
         echo("<div id=\"sanity_results\">".
              "<table align=\"center\">".
@@ -444,6 +423,7 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
              "</div>");
 
         echo("<div id=\"modules_results\">".
+             "<h3>&#9654; Database modules </h3>".
              "<table align=\"center\">".
              "<tr><td>".
                  "<div id=\"modules_loader\">".
