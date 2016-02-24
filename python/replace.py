@@ -13,16 +13,16 @@ def replace_passwords(file_path, triggers):
         config_line = line.split("=")
         if any([i.upper() in config_line[0].upper() for i in triggers]):
             if "config_override.php" in file_path:
-                line = line.replace(str(config_line[1]), "\'replace me\'; \n")
+                line = line.replace(str(config_line[1]), "\'scrubbed\'; \n")
             elif "config.php" in file_path:
                 if "," in config_line[1]:
                     append = ","
                 else:
                     append = ";"
-                line = line.replace(str(config_line[1]), "> \'replace me\' " +
+                line = line.replace(str(config_line[1]), "> \'scrubbed\' " +
                                     append+" \n")
             elif "sfa.variables" in file_path:
-                line = line.replace(str(config_line[1]), "replace_me \n")
+                line = line.replace(str(config_line[1]), "scrubbed\n")
             scrubbed.write(line)
         else:
             scrubbed.write(line)
