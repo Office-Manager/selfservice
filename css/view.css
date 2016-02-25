@@ -19,7 +19,6 @@ body
     padding: 12px;
 }
 
-
 #top
 {
     display:block;
@@ -226,4 +225,13 @@ label {
 
 #query-options{
   padding-bottom: 20px;
+}
+
+.twisties {
+  width: 640px;
+  margin: 0 auto;
+}
+
+.twisties .panel-heading {
+  text-align: left;
 }

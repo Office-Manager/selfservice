@@ -17,145 +17,7 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/view.css" media="all">
     <script language="javascript" src="calendar/calendar.js"></script>
-
-    <script type="text/javascript">
-          $(document).ready(function(){
-
-            //SQL vars
-            var sqlPrefix = 'SELECT';
-
-            ///Sanity results
-
-            $.ajax({
-                    type: 'GET',
-                    dataType: 'html',
-                    processData: false,
-                    url: "sanity.php",
-                    success: function (data, textStatus, jqXHR) {
-                       if(data.indexOf("ERROR: ") > -1){
-                          $("#sanity_results").text("Data currently unavailable.");
-                        }
-                        else {
-                        var sanity_results = $(data); //.find(":contains('Sanity Test results')").html();
-                        //var sanity_results = $(data).find("#sanity_table").html();
-
-                        $("#sanity_results").html(sanity_results);
-                        }
-                        $("#sanity_loader").hide();
-                    },
-                    error: function (responseData, textStatus, errorThrown) {
-                        $("#sanity_results").text("Data currently unavailable TEST123.");
-                        $("#sanity_loader").hide();
-                    }
-                });
-
-               ///Sanity results
-            $.ajax({
-                    type: 'GET',
-                    dataType: 'html',
-                    processData: false,
-                    url: "modules.php",
-                    success: function (data, textStatus, jqXHR) {
-                       if(data.indexOf("ERROR: ") > -1){
-                          $("#modules_results").text("Data currently unavailable.");
-                        }
-                        else {
-                        var modules_results = $(data); //.find(":contains('Sanity Test results')").html();
-                        //var sanity_results = $(data).find("#sanity_table").html();
-
-                        $("#modules_results").html(modules_results);
-                        }
-                        $("#modules_loader").hide();
-                    },
-                    error: function (responseData, textStatus, errorThrown) {
-                        $("#modules_results").text("Data currently unavailable.");
-                        $("#modules_loader").hide();
-                    }
-                });
-
-                $("input[name=sqltype]:radio, .myform").change(function() {
-                    $("textarea#sql").value = $('input[name=sqltype]:checked dbqueriesForm').val();
-
-                  if($('#sqlSelect').is(':checked')){
-                    $("textarea#sql").val('SELECT [column] FROM [schemaOwner.tablename]');
-                  }
-                  else{
-                    $("textarea#sql").val('DESCRIBE TABLE [schemaOwner.tablename]');
-                  }
-                });
-
-                $("textarea#sql").keydown(function(e) {
-                    var oldvalue=$(this).val();
-                    var field=this;
-                    setTimeout(function () {
-                        if(field.value.indexOf(sqlPrefix) !== 0) {
-                            $("textarea#sql").focus();
-                        }
-                        else if(field.value.toLowerCase().indexOf('; drop ') > -1){
-                          alert("Ha, you thought you're funny?");
-                            $(field).val(sqlPrefix);
-                            $("textarea#sql").focus();
-                        }
-                        else if(field.value.toLowerCase().indexOf('; delete ') > -1){
-                          alert("No DELETE's permitted here.");
-                            $(field).val(sqlPrefix);
-                            $("textarea#sql").focus();
-                        }
-                        else if(field.value.toLowerCase().indexOf('; update') > -1){
-                          alert("No UPDATES's permitted here.");
-                            $(field).val(sqlPrefix);
-                            $("textarea#sql").focus();
-                        }
-                    }, 1);
-                });
-
-                $("#clearSQL").click(function() {
-                  $("textarea#sql").val(sqlPrefix + " ");
-                  $("textarea#sql").focus();
-                });
-
-
-        });
-
-        function showHide(a){
-            var hiddenTime = document.getElementById("timeChoice");
-            var hiddenDate = document.getElementById("dateChoice");
-
-            if (a==1){
-                hiddenDate.style.display = "none";
-                hiddenTime.style.display = "none";
-            }
-            else if ( a==2){
-                hiddenDate.style.display ="none";
-                hiddenTime.style.display = "inline";
-            }
-            else if (a==3){
-                hiddenDate.style.display ="inline";
-                hiddenTime.style.display = "none";
-            }
-        }
-        function hideRadio(value){
-            var hiddenTime = document.getElementById("latest_time");
-            var hiddenDate = document.getElementById("latest_dates");
-            var hiddenTimeLabel = document.getElementById("latest_time_label");
-            var hiddenDateLabel = document.getElementById("latest_dates_label");
-            if (value=="sugarcrm"){
-                hiddenDate.style.display = "inline";
-                hiddenTime.style.display = "inline";
-
-                hiddenDateLabel.style.display = "inline";
-                hiddenTimeLabel.style.display = "inline";
-            }
-            else {
-                hiddenDate.style.display = "none";
-                hiddenTime.style.display = "none";
-
-                hiddenDateLabel.style.display = "none";
-                hiddenTimeLabel.style.display = "none";
-            }
-        }
-
-    </script>
+    <script type="text/javascript" src="js/selfservice.js"></script>
 </head>
 <body id="main_body">
 <iframe name="hiddenFrame" class="hide"></iframe>
@@ -178,7 +40,6 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
           ES Checker</a></li>
     </ul>
   </div>
-</div>
 <div class="tab-content">
   <div id="logdispenser" class="tab-pane fade in active">
       <div class="form_description">
@@ -259,37 +120,37 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
             <li>
             <div id="dateChoice" class="hidden_date" style="">
                 <?php
-                  $last_sat = strtotime("last Saturday"); #epoch time
-                  $dt = new DateTime("@$last_sat");
-                  $start_of_logs =  $dt->format('Y-m-d');
-                  $thisyear= getdate();
-                  $today=strtotime("today");
-                  $dt = new DateTime("@$today");
-                  $today =  $dt->format('Y-m-d');
+                 $last_sat = strtotime("last Saturday"); #epoch time
+                 $dt = new DateTime("@$last_sat");
+                 $start_of_logs =  $dt->format('Y-m-d');
+                 $thisyear= getdate();
+                 $today=strtotime("today");
+                 $dt = new DateTime("@$today");
+                 $today =  $dt->format('Y-m-d');
 
-                  $myCalendar = new tc_calendar("start_date", true, false);
-                  $myCalendar->setIcon("calendar/images/iconCalendar.gif");
-                  $myCalendar->setDate(date('d', strtotime($start_of_logs))
-                      , date('m', strtotime($start_of_logs))
-                      , date('Y', strtotime($start_of_logs)));
-                  $myCalendar->setPath("calendar/");
-                  $myCalendar->setYearInterval(date('Y', strtotime($start_of_logs)),date('Y', strtotime($today)));
-                  $myCalendar->dateAllow($start_of_logs, $today );
-                  $myCalendar->setAlignment('left', 'bottom');
-                  $myCalendar->setDatePair('start_date', 'end_date', $today);
-                  $myCalendar->writeScript();
+                 $myCalendar = new tc_calendar("start_date", true, false);
+                 $myCalendar->setIcon("calendar/images/iconCalendar.gif");
+                 $myCalendar->setDate(date('d', strtotime($start_of_logs))
+                     , date('m', strtotime($start_of_logs))
+                     , date('Y', strtotime($start_of_logs)));
+                 $myCalendar->setPath("calendar/");
+                 $myCalendar->setYearInterval(date('Y', strtotime($start_of_logs)),date('Y', strtotime($today)));
+                 $myCalendar->dateAllow($start_of_logs, $today );
+                 $myCalendar->setAlignment('left', 'bottom');
+                 $myCalendar->setDatePair('start_date', 'end_date', $today);
+                 $myCalendar->writeScript();
 
-                  $myCalendar = new tc_calendar("end_date", true, false);
-                  $myCalendar->setIcon("calendar/images/iconCalendar.gif");
-                  $myCalendar->setDate(date('d', strtotime($today))
-                      , date('m', strtotime($today))
-                      , date('Y', strtotime($today)));
-                  $myCalendar->setPath("calendar/");
-                  $myCalendar->setYearInterval(date('Y', strtotime($start_of_logs)),date('Y', strtotime($today)));
-                  $myCalendar->dateAllow($start_of_logs, $today );
-                  $myCalendar->setAlignment('left', 'bottom');
-                  $myCalendar->setDatePair('start_date', 'end_date', $start_of_logs);
-                  $myCalendar->writeScript();
+                 $myCalendar = new tc_calendar("end_date", true, false);
+                 $myCalendar->setIcon("calendar/images/iconCalendar.gif");
+                 $myCalendar->setDate(date('d', strtotime($today))
+                     , date('m', strtotime($today))
+                     , date('Y', strtotime($today)));
+                 $myCalendar->setPath("calendar/");
+                 $myCalendar->setYearInterval(date('Y', strtotime($start_of_logs)),date('Y', strtotime($today)));
+                 $myCalendar->dateAllow($start_of_logs, $today );
+                 $myCalendar->setAlignment('left', 'bottom');
+                 $myCalendar->setDatePair('start_date', 'end_date', $start_of_logs);
+                 $myCalendar->writeScript();
 
                 ?>
                 <p class="guidelines" id="guide_1">
@@ -308,11 +169,6 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
     </div>
   </div>
   <div id="dbqueries" class="tab-pane fade">
-  <?php  if (strpos(shell_exec('hostname'), 'svt6') !== false) {
-    echo 'Sorry DB Queries is disabled on SVT6 currently';
-} else {
-    ?>
-
     <form action="dbqueries.php" method="post" target="hiddenFrame" class="formClass" id="dbqueriesForm"/>
       <div class="content">
         <h4>Database Queries <sup>" - Because it's heart crushing using Sametime for database queries " </sup></h4>
@@ -348,7 +204,6 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
         </div>
       </div>
     </form>
-<?php } ?>
   </div>
   <div id="filedispenser" class="tab-pane fade">
     <form action="filedispenser.php" method="post" target="hiddenFrame" class="formClass" id="filedispenserForm"/>
@@ -374,10 +229,6 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
     </form>
   </div>
     <div id="eschecker" class="tab-pane fade">
-      <?php  if (strpos(shell_exec('hostname'), 'svt6') !== false) {
-    echo 'Sorry  ES Checker  is disabled on SVT6 currently';
-} else {
-    ?>
     <form action="eschecker.php" method="post" target="hiddenFrame" class="formClass" id="escheckerForm"/>
       <div class="content">
         <h4>ES checker <sup style="font-size: 58%">" - Sheep, like all wool-bearing animals, instinctively travel north, where it's colder, and they won't be so stuffy "<sup></h4>
@@ -394,57 +245,70 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
         </div>
       </div>
     </form>
-<?php } ?>
   </div>
 </div>
+</div>
+
 
       <?php
 
-         $database = $sugar_config['dbconfig']['db_name'] ;
-         $user = $sugar_config['dbconfig']['db_user_name'] ;
-         $password = $sugar_config['dbconfig']['db_password'] ;
-         $conn = db2_connect($database, $user, $password);
-         $connections = $sugar_config['connections_http_base_url'];
-         $ieb_url = $sugar_config['ieb_connections_base_url'];
-		     $cluster = $sugar_config['cluster_name'];
+        $database = $sugar_config['dbconfig']['db_name'] ;
+        $user = $sugar_config['dbconfig']['db_user_name'] ;
+        $password = $sugar_config['dbconfig']['db_password'] ;
+        $conn = db2_connect($database, $user, $password);
+        $connections = $sugar_config['connections_http_base_url'];
+        $ieb_url = $sugar_config['ieb_connections_base_url'];
+		    $cluster = $sugar_config['cluster_name'];
 
         // Sugar version
-
-        echo "<table border=0 align=\"center\">";
-
-        echo "<td align=\"center\">Hostname</td> <td><b>".shell_exec('hostname')."</b></td>";
-        echo "<tr>";
-        echo "<td align=\"center\">Sugar Version</td> <td><b><span id=\"build_version\">$sugar_build</span></b></td>";
-        echo "<tr>";
-        echo "<td align=\"center\">Connections Server</td> <td><b><span id=\"connections_server\">$connections</span></b></td>";
-        echo "<tr>";
-        echo "<td align=\"center\">IEB Connections Server</td> <td><b><span id=\"ieb_url\">$ieb_url</span></b></td>";
-        echo "</table>";
-        //
-        // Sanity Tests
-        echo("<div id=\"sanity_results\">".
-             "<table align=\"center\">".
-             "<tr><td>".
-                 "<div id=\"sanity_loader\">".
-                    "<p align=\"center\"><img src=\"images/loader.gif\" /></p>".
-                    "<p align=\"center\">Loading sanity results... </p>".
+        echo("<div class=\"twisties\">".
+                "<div class=\"panel panel-primary\">".
+                  "<div class=\"panel-heading\">Server info <span class=\"glyphicon glyphicon-hand-left pull-right\"></span></div>".
+                "<div class=\"panel-body\">".
+                    "<table border=0 align=\"center\">".
+                      "<td align=\"center\">Hostname</td> <td><strong>".shell_exec("hostname")."</strong></td>".
+                     "</tr><tr>".
+                      "<td align=\"center\">Sugar Version</td> <td><b><span id=\"build_version\">$sugar_build</span></b></td>".
+                     "</tr><tr>".
+                      "<td align=\"center\">Connections Server</td> <td><b><span id=\"connections_server\">$connections</span></b></td>".
+                     "</tr><tr>".
+                      "<td align=\"center\">IEB Connections Server</td> <td><b><span id=\"ieb_url\">$ieb_url</span></b></td>".
+                   "</tr></table>".
                  "</div>".
-             "</td></tr>".
-             "</table>".
+               "</div>".
              "</div>");
 
-        echo("<div id=\"modules_results\">".
-             "<h3>&#9654; Database modules </h3>".
-             "<table align=\"center\">".
-             "<tr><td>".
-                 "<div id=\"modules_loader\">".
-                    "<p align=\"center\"><img src=\"images/loader.gif\" /></p>".
-                    "<p align=\"center\">Loading db2 modules... </p>".
-                 "</div>".
-             "</td></tr>".
-             "</table>".
-             "</div>");
+       // Sanity Tests
+       echo('<div class="twisties">'.
+               '<div class="panel panel-primary">'.
+                 '<div class="panel-heading">Sanity results <span class="glyphicon glyphicon-hand-left pull-right"></span></div>'.
+               '<div class="panel-body">'.
+                 '<div id="sanity_results">'.
+                   '<div id=\"sanity_loader\">'.
+                       '<p align="center"><img src="images/loader.gif" /></p>'.
+                       '<p align="center">Loading sanity results...</p>'.
+                    '</div>'.
+                  '</div>'.
+                '</div>'.
+              '</div>'.
+            '</div>');
+
+        // Database modules
+        echo('<div class="twisties">'.
+                '<div class="panel panel-primary">'.
+                  '<div class="panel-heading">Database modules <span class="glyphicon glyphicon-hand-left pull-right"></span></div>'.
+                '<div class="panel-body">'.
+                  '<div id="modules_results">'.
+                    '<div id="modules_loader">'.
+                       '<p align="center"><img src="images/loader.gif" /></p>'.
+                       '<p align="center">Loading db2 modules... </p>'.
+                    '</div>'.
+                  '</div>'.
+                 '</div>'.
+               '</div>'.
+             '</div>');
 
 ?>
+</div>
 </body>
 </html>
