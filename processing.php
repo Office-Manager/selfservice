@@ -50,17 +50,8 @@ switch($_POST["log_type"]){
 <?php
 function downloadFile($file, $storage_dir) {
 	$file = trim($file);
-
-	echo "<br>".$file;
-	$output = shell_exec("whoami");
-	echo "<br>whoami returns:".$output."<br>";  ## returns apache
-	$output = shell_exec("ls -ltr ".$storage_dir.$file);
-	echo "output is ls -ltr on log  :".$output."<br>";  ##-rw-r--r-- 1 apache apache 733295 Feb 24 05:59
-
-
     $fullPath = $storage_dir.$file;
-	echo "<br>full path is ".$fullPath."<br>";
-    if (file_exists($fullPath)) { ## doesn't work
+	if (file_exists($fullPath)) { ## doesn't work
 		echo "the file exits";
 		header('Content-Description: File Transfer');
 		header('Content-Type: application/octet-stream');
