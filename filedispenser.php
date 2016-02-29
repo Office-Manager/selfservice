@@ -6,15 +6,9 @@ $filePaths = htmlspecialchars($filePaths);
     
     $command = "python ".$work_dir."/python/file_grabber.py"." \"".$filePaths."\"";
     $command = escapeshellcmd($command);
-    echo "<br>Test-1:".$command."<br>";
 
     $output = shell_exec($command);
-    echo "this is the output<br>";
-    echo $output;
-    echo "<br>";
     $file = trim($storage_dir.$output);
-    echo $file;
-    echo gettype($file);
     if ( 0 == filesize($file))
     {
         ?>
@@ -27,6 +21,7 @@ $filePaths = htmlspecialchars($filePaths);
     echo "download";
     downloadFile($output,$storage_dir);
     }
+
 function downloadFile($file, $storage_dir) {
 	$file = trim($file);
     $fullPath = $storage_dir.$file;

@@ -21,7 +21,6 @@ $file_path_json = $storage_dir.$file_json;
 
 $curl = curl_init();
 $full = "https://".$host.":".$port."/".$es_url;
-echo "<br>"; 
 
 
 
@@ -44,10 +43,6 @@ curl_setopt_array($curl, array(
 
 $output = curl_exec($curl);
 curl_close($curl);
-
-
-
-#echo $output;
 file_put_contents($file_path_plain, $output);
 
 shell_exec("python -m json.tool ".$file_path_plain." > ". $file_path_json);
@@ -63,18 +58,15 @@ if (strpos( $output,"No handler" ) !== false)
 }
 
 if (filesize($file_path_json) < 500)
-    { 
-echo "<br>testing1 ";
+    {
 $json = file_get_contents($file_path_json);
 $json = trim(preg_replace('/\s+/', ' ', $json));
 echo "entering file size less than 500 bytes";
-echo "<br>".$json;
     ?>
 		 <script>
 		 window.alert('<?php echo $json; ?>');
 		</script>
 	<?php
-   echo "<br>exiting1";
     exit;
 }else {
     downloadFile($file_json,$storage_dir);

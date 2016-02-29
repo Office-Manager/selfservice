@@ -44,15 +44,12 @@ $sql = "call SYSPROC.ADMIN_CMD('".$query."')";
 $ip = $_SERVER['REMOTE_ADDR'];
 $log_info = $date->format('Y-m-d H:i:s')."---".$ip."---".$sql."\n";
 file_put_contents('/var/www/htdocs/QueryLogging.txt', $log_info, FILE_APPEND);
-
-echo $log_info;
 if ($conn) {
     $stmt = db2_prepare($conn, $sql);
    if ($stmt) {
       $success = db2_execute($stmt);
       if (!$success) {
          $result[]=  "exec errormsg1: " .db2_stmt_errormsg($stmt);
-		 echo implode(' ',$result);
 		 $stringy = implode(' ',$result); ?>
 		 <script>
 		 window.alert(' <?php echo $stringy; ?>');
@@ -83,13 +80,11 @@ if ($conn) {
 			<?php
 			}
 			else{
-			echo "download";
 			downloadFile($filename,$storage_dir);
 			}
 	  }
    } else {
          $result[]=  "exec errormsg2: " .db2_stmt_errormsg($stmt);
-		 echo implode(' ',$result);
 		 $stringy = implode(' ',$result); ?>
 		 <script>
 		 window.alert(' <?php echo "did you enter a query ?::".$stringy; ?>');
