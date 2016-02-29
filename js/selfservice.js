@@ -103,39 +103,27 @@
 
 function showHide(a){
     var hiddenTime = document.getElementById("timeChoice");
-    var hiddenDate = document.getElementById("dateChoice");
 
     if (a==1){
-        hiddenDate.style.display = "none";
         hiddenTime.style.display = "none";
     }
     else if ( a==2){
-        hiddenDate.style.display ="none";
         hiddenTime.style.display = "inline";
     }
     else if (a==3){
-        hiddenDate.style.display ="inline";
         hiddenTime.style.display = "none";
     }
 }
 
 function hideRadio(value){
     var hiddenTime = document.getElementById("latest_time");
-    var hiddenDate = document.getElementById("latest_dates");
     var hiddenTimeLabel = document.getElementById("latest_time_label");
-    var hiddenDateLabel = document.getElementById("latest_dates_label");
     if (value=="sugarcrm"){
-        hiddenDate.style.display = "inline";
         hiddenTime.style.display = "inline";
-
-        hiddenDateLabel.style.display = "inline";
         hiddenTimeLabel.style.display = "inline";
     }
     else {
-        hiddenDate.style.display = "none";
         hiddenTime.style.display = "none";
-
-        hiddenDateLabel.style.display = "none";
         hiddenTimeLabel.style.display = "none";
     }
 }

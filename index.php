@@ -71,8 +71,7 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
                 <span id="latest_log_label">Latest log</span><br>
                 <input type="radio" name="log_type" value="latest_time" id="latest_time" onclick="showHide(2)"/>
                  <span id="latest_time_label">Latest Log (between specific times)</span><br>
-                <input type="radio" name="log_type" value="latest_dates" id="latest_dates" onclick="showHide(3)"/>
-                <span id="latest_dates_label">Logs from specific dates</span>
+
                 <p class="guidelines" id="guide_1"><small>
                     Latest log will give you the latest sugarcrm.log in it's entirety<br>
                     Latest log between specific times will give you the log with only the entries appearing between the times<br>
@@ -117,49 +116,6 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
                </p>
             </div>
             </li>
-            <li>
-            <div id="dateChoice" class="hidden_date" style="">
-                <?php
-                 $last_sat = strtotime("last Saturday"); #epoch time
-                 $dt = new DateTime("@$last_sat");
-                 $start_of_logs =  $dt->format('Y-m-d');
-                 $thisyear= getdate();
-                 $today=strtotime("today");
-                 $dt = new DateTime("@$today");
-                 $today =  $dt->format('Y-m-d');
-
-                 $myCalendar = new tc_calendar("start_date", true, false);
-                 $myCalendar->setIcon("calendar/images/iconCalendar.gif");
-                 $myCalendar->setDate(date('d', strtotime($start_of_logs))
-                     , date('m', strtotime($start_of_logs))
-                     , date('Y', strtotime($start_of_logs)));
-                 $myCalendar->setPath("calendar/");
-                 $myCalendar->setYearInterval(date('Y', strtotime($start_of_logs)),date('Y', strtotime($today)));
-                 $myCalendar->dateAllow($start_of_logs, $today );
-                 $myCalendar->setAlignment('left', 'bottom');
-                 $myCalendar->setDatePair('start_date', 'end_date', $today);
-                 $myCalendar->writeScript();
-
-                 $myCalendar = new tc_calendar("end_date", true, false);
-                 $myCalendar->setIcon("calendar/images/iconCalendar.gif");
-                 $myCalendar->setDate(date('d', strtotime($today))
-                     , date('m', strtotime($today))
-                     , date('Y', strtotime($today)));
-                 $myCalendar->setPath("calendar/");
-                 $myCalendar->setYearInterval(date('Y', strtotime($start_of_logs)),date('Y', strtotime($today)));
-                 $myCalendar->dateAllow($start_of_logs, $today );
-                 $myCalendar->setAlignment('left', 'bottom');
-                 $myCalendar->setDatePair('start_date', 'end_date', $start_of_logs);
-                 $myCalendar->writeScript();
-
-                ?>
-                <p class="guidelines" id="guide_1">
-                    <small>
-                    Please note all logs are cleaned out every saturday , so your valid range is from the previous saturday till today.
-                        <br>
-                        Also depending on logging level these files can be large , be warned !
-                    </small></p>
-                    </div>
                     </li>
                     <br />
                     <input type="submit" class="btn btn-primary">
