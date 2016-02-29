@@ -51,7 +51,7 @@ if (strpos( $output,"No handler" ) !== false)
 {
     ?>
 		 <script>
-		 window.alert('<?php echo $output; ?>');
+		 window.alert('<?php echo "No handlers found for that uri and method [GET]"; ?>');
 		</script>
 	<?php 
     exit;
