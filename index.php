@@ -1,6 +1,5 @@
 <?php
 if(!defined('sugarEntry'))define('sugarEntry', true);
-require_once('calendar/classes/tc_calendar.php');
 require_once('/var/www/htdocs/sales/salesconnect/sugar_version.php');
 require_once('/var/www/htdocs/sales/salesconnect/config.php');
 require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
@@ -16,7 +15,6 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/view.css" media="all">
-    <script language="javascript" src="calendar/calendar.js"></script>
     <script type="text/javascript" src="js/selfservice.js"></script>
 </head>
 <body id="main_body">
