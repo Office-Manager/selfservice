@@ -123,6 +123,11 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
     </div>
   </div>
   <div id="dbqueries" class="tab-pane fade">
+      <?php  if (strpos(shell_exec('hostname'), 'svt6') !== false) {
+    echo 'Sorry DB Queries is disabled on SVT6 currently';
+} else {
+    ?>
+
     <form action="dbqueries.php" method="post" target="hiddenFrame" class="formClass" id="dbqueriesForm"/>
       <div class="content">
         <h4>Database Queries <sup>" - Because it's heart crushing using Sametime for database queries " </sup></h4>
@@ -158,6 +163,7 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
         </div>
       </div>
     </form>
+<?php } ?>
   </div>
   <div id="filedispenser" class="tab-pane fade">
     <form action="filedispenser.php" method="post" target="hiddenFrame" class="formClass" id="filedispenserForm"/>
@@ -183,6 +189,11 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
     </form>
   </div>
     <div id="eschecker" class="tab-pane fade">
+    <?php  if (strpos(shell_exec('hostname'), 'svt6') !== false) {
+    echo 'Sorry  ES Checker  is disabled on SVT6 currently';
+    } else {
+    ?>
+
     <form action="eschecker.php" method="post" target="hiddenFrame" class="formClass" id="escheckerForm"/>
       <div class="content">
         <h4>ES checker <sup style="font-size: 58%">" - Sheep, like all wool-bearing animals, instinctively travel north, where it's colder, and they won't be so stuffy "<sup></h4>
@@ -199,6 +210,7 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
         </div>
       </div>
     </form>
+<?php } ?>
   </div>
 </div>
 </div>
