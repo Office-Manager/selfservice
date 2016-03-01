@@ -86,7 +86,7 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
                 <p>Time to begin log trim</p>
                 <select name="start_hour">
                     <?php for($x=1;$x<=23;$x++) { ?>
-                        <option value="<?= $x ?>"<?= (date("H") == $x ? ' selected="selected"' : '') ?>><?= $x ?></option>
+                        <option value="<?= $x ?>"<?= (gmdate("H") == $x ? ' selected="selected"' : '') ?>><?= $x ?></option>
                     <?php } ?>
                 </select>
                 <select name="start_minute">
@@ -98,7 +98,7 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
                 <p>Time to end log trim</p>
                 <select name="end_hour">
                     <?php for($x=1;$x<=23;$x++) { ?>
-                        <option value="<?= $x ?>"<?= (date("H") == $x ? ' selected="selected"' : '') ?>><?= $x ?></option>
+                        <option value="<?= $x ?>"<?= (gmdate("H") == $x ? ' selected="selected"' : '') ?>><?= $x ?></option>
                     <?php } ?>
                 </select>
                 <select name="end_minute">
