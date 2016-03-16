@@ -12,7 +12,7 @@ body
 
 .content
 {
-    background: #e7e7e7;
+    background: #ffa500;
     margin:0 auto;
     text-align:left;
     width:640px;
@@ -234,4 +234,5 @@ label {
 
 .twisties .panel-heading {
   text-align: left;
+  background: #ffa500;
 }
