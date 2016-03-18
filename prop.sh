@@ -1,6 +1,6 @@
 cd /var/www/htdocs/
 rm -f master.zip
-if [ ! -f /tmp/foo.txt ]; then
+if [ ! -f QueryLogging.txt ]; then
     touch QueryLogging.txt
 fi
 wget http://bryantlab02.rtp.raleigh.ibm.com/public/master.zip
