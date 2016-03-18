@@ -20,7 +20,7 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
 <body id="main_body">
 <iframe name="hiddenFrame" class="hide"></iframe>
 <div class="container">
-  <h1>Happy Saint Paddys day !<sup>Note it's not Saint Pattys day</sup></h1>
+  <h1>SalesConnect Self Service<sup>Make your admins love you!</sup></h1>
   <p>Select your utility from the options below.</p>
   <div class="pill-menu">
     <ul class="nav nav-pills">
