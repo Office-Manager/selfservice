@@ -15,7 +15,8 @@ class FileGrabber(object):
         # Storage directory for the logs
         self.output_directory = "/var/www/htdocs/selfservice/storage/"
         self.not_found_directory = "/var/www/htdocs/sales/files-not-matched/"
-        self.base_directory = "/var/www/htdocs/sales/salesconnect/"
+        self.base_directory = ["/var/www/htdocs/sales/salesconnect/", "/opt/freeware/etc/httpd/conf"]
+        self.whitelist_files = ["/etc/openldap/ldap.conf",  "/opt/freeware/etc/php.ini"]
         # New time stamp needed so log file will be unique
         self.t_stamp = int(time.time())
         self.list_of_files = []
@@ -34,16 +35,27 @@ class FileGrabber(object):
                             self.list_of_files.append(path)
                         else:
                             self.file_not_found(path)
+                elif path[:28] in self.base_directory:
+                    if path.endswith("/ALL"):
+                        if os.path.exists(path[:-3]):
+                            self.get_directory(path[:-3])
+                    else:
+                        if os.path.exists(path):
+                            self.list_of_files.append(path)
+                        else:
+                            self.file_not_found(path)
+                elif path in self.whitelist_files:
+                    self.list_of_files.append(path)
                 else:
                     self.file_not_found(path)
             else:
                 if path == "ALL":
-                    self.get_directory(self.base_directory)
+                    self.get_directory(self.base_directory[0])
                 if path.endswith("/ALL"):
-                    if os.path.exists(self.base_directory+path[:-3]):
-                        self.get_directory(self.base_directory+path[:-3])
-                elif os.path.exists(self.base_directory+path):
-                    self.list_of_files.append(self.base_directory+path)
+                    if os.path.exists(self.base_directory[0]+path[:-3]):
+                        self.get_directory(self.base_directory[0]+path[:-3])
+                elif os.path.exists(self.base_directory[0]+path):
+                    self.list_of_files.append(self.base_directory[0]+path)
                 else:
                     self.file_not_found(path)
         if len(self.list_of_files) == 1:
