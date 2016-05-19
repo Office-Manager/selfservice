@@ -9,7 +9,8 @@ if [ $? -ne 0 ];then
     exit -1
 fi
 rm -rf /var/www/htdocs/selfservice/
-mkdir -p /var/www/htdocs/selfservice/
-unzip -o master.zip -d /var/www/htdocs/selfservice/
+mkdir -p /var/www/htdocs
+unzip -o master.zip -d /var/www/htdocs
+mv selfservice-master selfservice
 chown -R apache:apache selfservice/
 chown apache:apache QueryLogging.txt
