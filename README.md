@@ -1,3 +1,4 @@
+![Piggy Bank Self Service](https://raw.githubusercontent.com/segaps/selfservice/master/images/Piggy%20Bank%20Self%20Service.png)
 
 # SalesConnect Self Service tool
 
