@@ -55,15 +55,6 @@ if [[ $? -ne 0 ]]; then
 fi
 done
 
-UH=/gpfs1/backup/upgrade_history/
-mkdir -p $UH
-. /home/apache/.profile
-DB_PASS=$(grep -i 'db_password' $SALES_DIR/config.php | cut -d">" -f2 | sed s/[\',]//g)
-db2 connect to saleconn user sctid using $DB_PASS
-db2 delete from sctid.upgrade_history
-db2 delete from sctid.upgrade_history
-db2 "import from $UH/$Build_No.ixf  of ixf insert into sctid.upgrade_history"
-
 
 if [ $CONFIG = "true" ]; then
     echo "replacing the config files with the ENV_BASE ones"
@@ -83,3 +74,12 @@ if [ $CONFIG = "true" ]; then
         exit -1
     fi
 fi
+
+UH=/gpfs1/backup/upgrade_history/
+mkdir -p $UH
+. /home/apache/.profile
+DB_PASS=$(grep -i 'db_password' $SALES_DIR/config.php | cut -d">" -f2 | sed s/[\',]//g)
+db2 connect to saleconn user sctid using $DB_PASS
+db2 delete from sctid.upgrade_history
+db2 delete from sctid.upgrade_history
+db2 "import from $UH/$Build_No.ixf  of ixf insert into sctid.upgrade_history"
