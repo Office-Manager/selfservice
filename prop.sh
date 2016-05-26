@@ -3,7 +3,7 @@ rm -f master.zip
 if [ ! -f QueryLogging.txt ]; then
     touch QueryLogging.txt
 fi
-wget http://bryantlab02.rtp.raleigh.ibm.com/public/master.zip
+wget --no-check-certificate https://github.com/segaps/selfservice/archive/master.zip
 if [ $? -ne 0 ];then
     echo "problem downloading the master.zip exiting"
     exit -1
