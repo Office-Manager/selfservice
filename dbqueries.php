@@ -5,18 +5,13 @@ $storage_dir = $work_dir."/storage/";
 
 if(!defined('sugarEntry'))define('sugarEntry', true);
 require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
-?>
 
-
-
-<?php
 $date = new DateTime();
 $database = 'SALECONN';
 $hostname = $sugar_config['db']['reports']['db_host_name'];
 $port = $sugar_config['db']['reports']['db_port']; // also tried 50000
 
-#$conn_string = "DRIVER={IBM DB2 ODBC DRIVER};DATABASE=$database;HOSTNAME=$hostname;PORT=$port;PROTOCOL=TCPIP;UID=$user;PWD=$password;";
-#$conn_string = "DATABASE=SALECONN;HOSTNAME=svt4stdbydb.rtp.raleigh.ibm.com;PORT=50000;PROTOCOL=TCPIP;UID=sean01seanl01@tst.ibm.com;PWD=passw0rd";
+
 $conn_string = "DATABASE=SALECONN;HOSTNAME=".$hostname.";PORT=".$port.";PROTOCOL=TCPIP;UID=sean01seanl01@tst.ibm.com;PWD=passw0rd";
 
 $conn = db2_connect($conn_string, '', '');
@@ -25,14 +20,6 @@ $conn = db2_connect($conn_string, '', '');
 $message = "Dont use SELECT * type queries .The query attempted to use a data types which cannot be used in queries against a read-enabled HADR standby database.(LOB * )";
 $query = $_POST["sql"];
 $query = htmlspecialchars($query);
-/*if (strpos($query," * ") !== false) {
-?>
-	<script>
-	window.alert('<?php echo $message; ?>');
-	</script>
-<?php
-exit;
-}*/
 $type = $_POST["sqltype"];
 $format = $_POST["format"];
 if ($type == "select"){
