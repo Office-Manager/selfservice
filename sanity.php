@@ -12,7 +12,12 @@
 		if ($cluster == "SC4IBM")
 		{
 		
-				chdir('/var/www/htdocs/sales/salesconnect');
+
+            if (file_exists("/var/www/htdocs/sales/salesconnect/custom/service/IBMSanityCheck/serverStatusJSON.php")) {
+                chdir('/var/www/htdocs/sales/salesconnect/custom/service/IBMSanityCheck/');
+            } else {
+            chdir('/var/www/htdocs/sales/salesconnect/');
+                }
 				$value = shell_exec('php serverStatusCLI.php');
 				$value = substr($value,17);
 
