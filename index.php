@@ -200,7 +200,7 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
       </div>
     </form>
   </div>
-</div>
+  </div>
 </div>
 
 
@@ -246,6 +246,20 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
                 '</div>'.
               '</div>'.
             '</div>');
+        // ES  count
+        echo('<div class="twisties">'.
+                '<div class="panel panel-primary">'.
+                  '<div class="panel-heading">ES Queue count  <span class="glyphicon glyphicon-hand-left pull-right"></span></div>'.
+                '<div class="panel-body">'.
+                  '<div id="es_results">'.
+                    '<div id="es_loader">'.
+                       '<p align="center"><img src="images/loader.gif" /></p>'.
+                       '<p align="center">Retrieving live count... </p>'.
+                    '</div>'.
+                  '</div>'.
+                 '</div>'.
+               '</div>'.
+             '</div>');
 
         // Database modules
         echo('<div class="twisties">'.

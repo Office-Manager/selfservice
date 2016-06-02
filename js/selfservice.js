@@ -27,6 +27,31 @@
             }
         });
 
+        ///ES Count
+    $.ajax({
+            type: 'GET',
+            dataType: 'html',
+            processData: false,
+            url: "es_count.php",
+            success: function (data, textStatus, jqXHR) {
+               if(data.indexOf("ERROR: ") > -1){
+                  $("#es_results").text("Data currently unavailable.");
+                }
+                else {
+                var modules_results = $(data); //.find(":contains('Sanity Test results')").html();
+                //var sanity_results = $(data).find("#sanity_table").html();
+
+                $("#es_results").html(modules_results);
+                }
+                $("#es_loader").hide();
+            },
+            error: function (responseData, textStatus, errorThrown) {
+                $("#es_results").text("Data currently unavailable.");
+                $("#es_loader").hide();
+            }
+        });
+
+
     ///Database modules
     $.ajax({
             type: 'GET',
