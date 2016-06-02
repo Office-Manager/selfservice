@@ -12,16 +12,16 @@
 		if ($cluster == "SC4IBM")
 		{
 		
-
-            if (file_exists("/var/www/htdocs/sales/salesconnect/custom/service/IBMSanityCheck/serverStatusJSON.php")) {
-                chdir('/var/www/htdocs/sales/salesconnect/custom/service/IBMSanityCheck/');
-            } else {
             chdir('/var/www/htdocs/sales/salesconnect/');
+            if (file_exists("/var/www/htdocs/sales/salesconnect/custom/service/IBMSanityCheck/serverStatusJSON.php")) {
+                $value = shell_exec('php custom/service/IBMSanityCheck/serverStatusCLI.php');
+                $value = substr($value,17);
                 }
+            else {
 				$value = shell_exec('php serverStatusCLI.php');
 				$value = substr($value,17);
-
-				echo "<td>".nl2br(htmlentities($value))."</td>"; // for HTML as output, with <br/> for newlines        
+                }
+			echo "<td>".nl2br(htmlentities($value))."</td>"; // for HTML as output, with <br/> for newlines
 				
 		}else {
 				echo "<td> Sozzles we don't run Sanity on SC4BP instance anymore !</td>";
