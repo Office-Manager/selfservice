@@ -18,10 +18,10 @@ def run_command(command):
 
 def find_ini_files():
     ini_files = []
-    path_to_ini = os.getcwd()+"/iniFiles/"
+    path_to_ini = os.getcwd() + "/iniFiles/"
     for f in os.listdir(path_to_ini):
         if f.endswith(".ini"):
-            ini_files.append(path_to_ini+f)
+            ini_files.append(path_to_ini + f)
     return ini_files
 
 
@@ -81,7 +81,7 @@ def run_operation(group, command):
     ini_files = find_ini_files()
     exit_bool = False
     append = "s"
-    naughty_orchs =[]
+    naughty_orchs = []
     if command == "stop":
         append = ""
 
@@ -108,6 +108,9 @@ def run_operation(group, command):
         elif command == "wipe":
             run_command(
                 "php ciHelper.php wipeBox %s override" % f)
+        elif command == "wipe_specific":
+            for i in group:
+                run_command("php ciHelper.php wipeBox %s %s override" % (f, i))
         elif command == "publish":
             run_command(
                 "php ciHelper.php %sProject%s %s %s override "
@@ -233,6 +236,8 @@ group2_orchs = ["CreateSiteInCCMS",
                 "ErrorService"
                 ]
 
+select_orchs = []
+
 
 def shutdown_orchs(g1_list, g2_list):
     g1_found, g2_found, others_found = get_orchs_on_system(g1_list, g2_list)
@@ -309,7 +314,10 @@ def publish_orchs():
         print("Incorrect amount of arguments given")
         sys.exit(-1)
     print("Publishing new orchestrations")
-    time_stamp = build_label[-14:]
+    # Changing the Time Stamp to include the full build label.
+    # With the option of specific orchestrations I feel it's
+    # important to know which Build the orchestration came from
+    time_stamp = "_" + build_label
     run_operation(time_stamp, "publish")
 
 
@@ -318,14 +326,57 @@ def upgrade_orchs(g1_list, g2_list):
     publish_orchs()
 
 
+def wipe_specific(select_orchs):
+    run_operation(select_orchs, "wipe_specific")
+
+
+def publish_specific(select_orchs):
+    downloaded_pars = []
+    deleted_pars = []
+    tmp_pars = []
+    path_to_par = "CastIron/archives/"
+    for par in os.listdir(path_to_par):
+        if par.endswith(".par"):
+            downloaded_pars.append(par)
+    for i in downloaded_pars:
+        for j in select_orchs:
+            if j in i:
+                tmp_pars.append(i)
+    print tmp_pars
+    deleted_pars = list(set(downloaded_pars) - set(tmp_pars))
+    for i in deleted_pars:
+        os.remove(path_to_par + i)
+    publish_orchs()
+
+
+def upgrade_specific(g1_list, g2_list, select_orchs):
+    g1_found, g2_found, others_found = get_orchs_on_system(g1_list, g2_list)
+    group = g1_found + g2_found + others_found
+    select_orchs_found = []
+    select_orchs_publish = []
+    for i in group:
+        for j in select_orchs:
+            if j in i:
+                select_orchs_found.append(i)
+                select_orchs_publish.append(j)
+
+    wipe_specific(select_orchs_found)
+    publish_specific(select_orchs_publish)
+
+
 def main():
     process = str(sys.argv[1]).rstrip()
+    if len(sys.argv) == 4:
+        my_string = str(sys.argv[3])
+        select_orchs = my_string.split(",")
     if process == "Shutdown":
         shutdown_orchs(group1_orchs, group2_orchs)
     elif process == "Startup":
         startup_orchs(group1_orchs, group2_orchs)
     elif process == "Upgrade":
         upgrade_orchs(group1_orchs, group2_orchs)
+    elif process == "specific_upgrade":
+        upgrade_specific(group1_orchs, group2_orchs, select_orchs)
 
 
 if __name__ == '__main__':
