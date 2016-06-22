@@ -160,15 +160,15 @@ def run_operation(group, command):
                     exit_bool = True
                     i = 5
 
-        if command == "stop":
-            if not exit_bool:
+        if not exit_bool:
+            if command == "stop":
                 i = 0
                 while i < 5:
                     i += 1
                     for f in ini_files:
                         for orch in group:
                             if command in ["stop"]:
-                                print("%sing %s with cancel override."
+                                print("%sping %s with cancel override."
                                       % (command, orch))
                             run_command(
                                 "php ciHelper.php %sProject%s %s %s  cancel"
@@ -178,7 +178,21 @@ def run_operation(group, command):
                     time.sleep(30)
                 naughty_orchs = get_status(group, f, ["stopped", "undeployed"])
                 if naughty_orchs:
-                    print("Orchestration %s haven't stopped" % naughty_orchs)
+                    print("[FATAL] Orchestration %s haven't stopped."
+                          % naughty_orchs)
+                    print("[ADVICE] Please run the operation again as not all"
+                          "orchestrations stopped and more could still be "
+                          "running as their perquisite orchestration was not"
+                          "stopped. ")
+                    sys.exit(-1)
+            if command == "start":
+                naughty_orchs = get_status(group, f, ["running"])
+                if naughty_orchs:
+                    print("[FATAL] Orchestration %s haven't started after 2.5 "
+                          "minutes."
+                          % naughty_orchs)
+                    print("[ADVICE] Please only run the 'Start Orchestrations'"
+                          "job again. ")
                     sys.exit(-1)
 
 
