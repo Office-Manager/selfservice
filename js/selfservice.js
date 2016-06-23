@@ -2,7 +2,7 @@
 
     // Prepare Easter Egg components
     var easterEggOn = false;
-    var music = new Audio('sounds/barnyard_bash.mp3');
+    var music = new Audio('sounds/TheStarSpangledBanner_BandOnly.mp3');
     var fireworks = new Audio('sounds/fireworks.mp3');
     var hideEasterEgg = function(){
       // Hide American Flag on page load
