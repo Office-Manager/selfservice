@@ -173,7 +173,7 @@ def run_operation(group, command):
                             run_command(
                                 "php ciHelper.php %sProject%s %s %s  cancel"
                                 % (command, append, f, orch))
-                            group = get_status(group, f,
+                        group = get_status(group, f,
                                                ["stopped", "undeployed"])
                     time.sleep(30)
                 naughty_orchs = get_status(group, f, ["stopped", "undeployed"])
