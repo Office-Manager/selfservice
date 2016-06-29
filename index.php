@@ -18,6 +18,25 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
     <script type="text/javascript" src="js/selfservice.js"></script>
 </head>
 <body id="main_body">
+<div id="americanFlagTop">
+  <img src="images/american-flag.png" alt="flag"/>
+</div>
+
+<div id="easterEggFireworks1">
+  <img src="images/fireworks-animation-1.gif" alt="fireworks"/>
+</div>
+<div id="easterEggFireworks2">
+  <img src="images/fireworks-animation-2.gif" alt="fireworks"/>
+</div>
+<div id="easterEggFireworks3">
+  <img src="images/fireworks-animation-1.gif" alt="fireworks"/>
+</div>
+<div id="easterEggAbraham">
+  <img src="images/abraham.png" alt="abraham"/>
+</div>
+<div id="easterEggBigText">
+  Happy 4th of July
+</div>
 <iframe name="hiddenFrame" class="hide"></iframe>
 <div class="container">
   <h1>SalesConnect Self Service<sup>Make your admins love you!</sup></h1>
@@ -202,7 +221,9 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
   </div>
   </div>
 </div>
-
+<div>
+  <a href="#" id="easterEggButton">Happy 4th of July!</a>
+</div>  
 
       <?php
 
