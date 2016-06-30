@@ -222,7 +222,7 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
   </div>
 </div>
 <div>
-  <a href="#" id="easterEggButton">Happy 4th of July!</a>
+  <a href="#" id="easterEggButton">Happy 4th , Click me !</a>
 </div>  
 
       <?php
