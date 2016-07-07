@@ -1,47 +1,5 @@
   $(document).ready(function(){
 
-    // Prepare Easter Egg components
-    var easterEggOn = false;
-    var music = new Audio('sounds/TheStarSpangledBanner_BandOnly.mp3');
-    var fireworks = new Audio('sounds/fireworks.mp3');
-    var hideEasterEgg = function(){
-      // Hide American Flag on page load
-      $('#americanFlagTop').hide();
-      $('#easterEggFireworks1').hide();
-      $('#easterEggFireworks2').hide();
-      $('#easterEggFireworks3').hide();
-      $('#easterEggAbraham').hide();
-      $('#easterEggBigText').hide();
-    };
-
-    // Hide the components
-    hideEasterEgg();
-
-    $('#easterEggButton').click(function(){
-      if(easterEggOn) {
-        hideEasterEgg();
-        music.pause();
-        music.currentTime = 0;
-        fireworks.pause();
-        fireworks.currentTime = 0;
-        easterEggOn = false;
-        $('#easterEggButton').text('Happy 4th of July!');
-      }
-      else {
-        $('#easterEggButton').text('Close the celebration flag');
-        music.play();
-        $('#americanFlagTop').slideDown(2500,'swing',function(){
-          $('#easterEggBigText').show();
-          setTimeout(function(){fireworks.play();}, 500);
-          setTimeout(function(){$('#easterEggFireworks1').show();}, 500);
-          setTimeout(function(){$('#easterEggFireworks2').show();}, 1500);
-          setTimeout(function(){$('#easterEggFireworks3').show();}, 2500);
-          setTimeout(function(){$('#easterEggAbraham').show();}, 3500);
-          easterEggOn = true;
-        });
-      }
-    })
-
     //SQL vars
     var sqlPrefix = 'SELECT';
 
