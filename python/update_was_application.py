@@ -132,9 +132,12 @@ def update_application():
      -clientMode isolated\
      -novalidateSchema\
      """ + context_root + """\
-     -MapModulesToServers [[ """ + map_module_str + """,WEB-INF/web.xml
-      WebSphere:cell=""" + cell_name + """,node=""" \
-      + node_name + """,server=""" + server_name + """ ]] """
+     -MapModulesToServers [[ """ + map_module_str + """,WEB-INF/web.xml\
+     WebSphere:cell=""" + cell_name + """,node=""" \
+                        + node_name + """,server=""" + server_name + """ ]]\
+     -MapWebModToVH [[ """ + map_module_str + """,WEB-INF/web.xml\
+     default_host ]]
+     """
 
     AdminApp.update(app_name, 'app', update_parameters)
     AdminConfig.save()

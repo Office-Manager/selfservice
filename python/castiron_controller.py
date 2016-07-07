@@ -176,6 +176,8 @@ def run_operation(group, command):
                         group = get_status(group, f,
                                                ["stopped", "undeployed"])
                     time.sleep(30)
+                    if not group:
+                        i = 5
                 naughty_orchs = get_status(group, f, ["stopped", "undeployed"])
                 if naughty_orchs:
                     print("[FATAL] Orchestration %s haven't stopped."
