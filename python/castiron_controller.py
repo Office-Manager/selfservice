@@ -374,10 +374,9 @@ def upgrade_specific(g1_list, g2_list, select_orchs):
         for j in select_orchs:
             if j in i:
                 select_orchs_found.append(i)
-                select_orchs_publish.append(j)
 
     wipe_specific(select_orchs_found)
-    publish_specific(select_orchs_publish)
+    publish_specific(select_orchs)
 
 
 def main():

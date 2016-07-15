@@ -15,7 +15,9 @@ class FileGrabber(object):
         # Storage directory for the logs
         self.output_directory = "/var/www/htdocs/selfservice/storage/"
         self.not_found_directory = "/var/www/htdocs/sales/files-not-matched/"
-        self.base_directory = ["/var/www/htdocs/sales/salesconnect/", "/opt/freeware/etc/httpd/conf"]
+        self.base_directory = ["/var/www/htdocs/sales/salesconnect/",
+                               "/opt/freeware/etc/httpd/conf",
+                               "/tempspace/ucd_temp/"]
         self.whitelist_files = ["/etc/openldap/ldap.conf",  "/opt/freeware/etc/php.ini"]
         # New time stamp needed so log file will be unique
         self.t_stamp = int(time.time())
