@@ -9,6 +9,9 @@ def run_command(command):
                          stdout=subprocess.PIPE,
                          stderr=subprocess.STDOUT)
     (output, err) = p.communicate()
+    if p.returncode != 0:
+        print "The command :: %s  :: had a non zero return code" % command
+        sys.exit(1)
     if err is None:
         return output
     else:
