@@ -11,10 +11,10 @@ require_once('/var/www/htdocs/sales/salesconnect/config_override.php');
     <title>Nobody likes collecting logs</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="css/view.css" media="all">
+    <link href="css/view.css" rel="stylesheet" type="text/css" media="all">
     <script type="text/javascript" src="js/selfservice.js"></script>
 </head>
 <body id="main_body">

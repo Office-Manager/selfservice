@@ -1,5 +1,19 @@
 /* @import url('https://fonts.googleapis.com/css?family=Lato|Lato'); */
 
+@font-face {
+  font-family: 'Lato';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/fonts/Lato-regular/Lato-regular.eot');
+  src: url('/fonts/Lato-regular/Lato-regular.eot?#iefix') format('embedded-opentype'),
+       local('Lato Regular'),
+       local('Lato-regular'),
+       url('/fonts/Lato-regular/Lato-regular.woff2') format('woff2'),
+       url('/fonts/Lato-regular/Lato-regular.woff') format('woff'),
+       url('/fonts/Lato-regular/Lato-regular.ttf') format('truetype'),
+       url('/fonts/Lato-regular/Lato-regular.svg#Lato') format('svg');
+}
+
 /*!
  * Default theme for Pingendo
  * Homepage: http://pingendo.com
@@ -1087,7 +1101,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: arial;
+  font-family: 'Lato', 'Roboto', Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #000000;
@@ -1189,7 +1203,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Roboto' Arial sans-serif;
+  font-family: 'Lato', 'Roboto', Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
@@ -5826,7 +5840,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: 'Roboto' Arial sans-serif;
+  font-family: 'Lato', 'Roboto', Arial, sans-serif;
   font-size: 12px;
   font-weight: normal;
   line-height: 1.4;
@@ -5933,7 +5947,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: 'Roboto' Arial sans-serif;
+  font-family: 'Lato', 'Roboto', Arial, sans-serif;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.42857143;
